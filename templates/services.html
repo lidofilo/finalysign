@@ -1,0 +1,29 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<meta charset="UTF-8">
+
+<section class="py-20 bg-lightBg dark:bg-primary text-center transition duration-300">
+  <h1 class="text-4xl font-bold text-accent mb-6">خدماتنا</h1>
+  <p class="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+    نقدم حلولاً شاملة تجمع بين التحليل المالي، الذكاء البياني، والإبداع التصميمي لدعم نمو أعمالك.
+  </p>
+</section>
+
+<section class="py-12 bg-white dark:bg-gray-800">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+    <div class="p-6 shadow-md rounded-lg">
+      <h3 class="text-xl font-semibold text-accent mb-3">الخدمات المالية</h3>
+      <p>تحليل الأداء المالي، دراسات الجدوى، إدارة المخاطر، والتخطيط الاستراتيجي.</p>
+    </div>
+    <div class="p-6 shadow-md rounded-lg">
+      <h3 class="text-xl font-semibold text-accent mb-3">تحليل البيانات</h3>
+      <p>تصميم لوحات BI، استخراج رؤى ذكية من البيانات، وأتمتة التقارير الإحصائية.</p>
+    </div>
+    <div class="p-6 shadow-md rounded-lg">
+      <h3 class="text-xl font-semibold text-accent mb-3">التصميم والإبداع</h3>
+      <p>تصميم الهوية البصرية، واجهات المستخدم UX/UI، والعروض التفاعلية المميزة.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

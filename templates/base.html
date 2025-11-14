@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+
+  <!-- ✅ تضمين Tailwind عبر CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ✅ إعداد ألوان FinalySign -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0a192f',
+            accent: '#ff6b35',
+            lightBg: '#e0f7fa',
+            lightText: '#1a1a1a',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-lightBg text-lightText dark:bg-primary dark:text-white transition-all duration-500">
+  <nav class="flex justify-between items-center p-4 shadow-md">
+    <h1 class="font-bold text-xl text-accent">FinalySign</h1>
+    <div class="space-x-4 rtl:space-x-reverse">
+      <a href="/" class="hover:text-accent">الرئيسية</a>
+      <a href="/about" class="hover:text-accent">من نحن</a>
+      <a href="/services" class="hover:text-accent">الخدمات</a>
+      <a href="/portfolio" class="hover:text-accent">أعمالنا</a>
+      <a href="/contact" class="hover:text-accent">اتصل بنا</a>
+      <button id="theme-toggle" class="ml-4 p-2 bg-gray-100 dark:bg-gray-700 rounded">🌓</button>
+    </div>
+  </nav>
+
+  <main class="p-6">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ✅ كود التبديل بين الوضعين -->
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+  </script>
+</body>
+</html>

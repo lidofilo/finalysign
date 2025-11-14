@@ -1,0 +1,28 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<meta charset="UTF-8">
+
+<section class="py-20 bg-lightBg dark:bg-primary text-center transition duration-300">
+  <h1 class="text-4xl font-bold text-accent mb-6">أعمالنا</h1>
+  <p class="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
+    مجموعة من المشاريع التي نفذناها لعملائنا من مختلف المجالات — حيث يلتقي التحليل بالدقة والإبداع بالنتائج.
+  </p>
+</section>
+
+<section class="py-12 bg-white dark:bg-gray-800">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    {% for i in range(3) %}
+    <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+      <img src="https://via.placeholder.com/500x300" alt="Project {{ i + 1 }}" class="w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-accent font-semibold text-lg mb-2">مشروع رقم {{ i + 1 }}</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          مشروع يجمع بين التحليل المالي، ذكاء البيانات، والإبداع في العرض.
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
