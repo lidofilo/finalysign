@@ -83,5 +83,6 @@ def contact():
 # ------------------------
 if __name__ == "__main__":
     from waitress import serve
-    print("🚀 FinalySign server is running on http://127.0.0.1:8080")
-    serve(app, host="0.0.0.0", port=8080)
+    port = int(os.environ.get("PORT", 8080))  # Railway will assign PORT automatically
+    print(f"🚀 FinalySign server is running on port {port}")
+    serve(app, host="0.0.0.0", port=port)
