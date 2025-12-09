@@ -1,0 +1,66 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* منع النسخ والتحديد */
+.nocopy {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* منع الضغط يمين */
+body {
+    -webkit-touch-callout: none;
+}
+</style>
+
+<script>
+// منع الضغط يمين
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// منع Ctrl+C و Ctrl+U و Ctrl+S
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && ['u', 's', 'c'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+    }
+});
+</script>
+
+<section class="py-20 bg-lightBg dark:bg-primary transition duration-300 nocopy">
+
+    <div class="max-w-3xl mx-auto px-6">
+        <h1 class="text-3xl font-bold text-accent mb-6 text-center">🔍 البحث</h1>
+
+        <form method="POST" action="/search" class="mb-10">
+            <input 
+                type="text" 
+                name="keyword" 
+                placeholder="اكتب كلمة البحث..." 
+                class="w-full p-3 rounded-lg border border-gray-400"
+                value="{{ keyword }}"
+            >
+            <button class="mt-4 w-full bg-accent text-white p-3 rounded-lg">بحث</button>
+        </form>
+
+        {% if results %}
+            <h2 class="text-xl font-semibold mb-4">نتائج البحث:</h2>
+            <div class="space-y-4">
+
+                {% for row in results %}
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow nocopy">
+                        <h3 class="text-xl font-bold text-accent">{{ row['title'] }}</h3>
+                        <p class="mt-2 text-gray-700 dark:text-gray-300">{{ row['description'] }}</p>
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% elif keyword %}
+            <p class="text-center text-gray-500">لا توجد نتائج.</p>
+        {% endif %}
+    </div>
+
+</section>
+
+{% endblock %}

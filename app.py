@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mail import Mail, Message
 import os
 from dotenv import load_dotenv
+import sqlite3
 
 # تحميل متغيرات البيئة
 load_dotenv()
@@ -18,6 +19,12 @@ app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
 app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
 app.config['MAIL_DEFAULT_SENDER'] = ("FinalySign", os.getenv("MAIL_USERNAME"))
 
+
+
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 mail = Mail(app)
@@ -76,6 +83,24 @@ def contact():
         return redirect(url_for('contact'))
 
     return render_template('contact.html', title="اتصل بنا - FinalySign")
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    results = []
+    keyword = ""
+
+    if request.method == 'POST':
+        keyword = request.form.get('keyword')
+
+        conn = get_db_connection()
+        results = conn.execute(
+            "SELECT * FROM records WHERE title LIKE ? OR description LIKE ?",
+            (f"%{keyword}%", f"%{keyword}%")
+        ).fetchall()
+        conn.close()
+
+    return render_template('search.html', results=results, keyword=keyword)
+
 
 
 if __name__ == "__main__":
