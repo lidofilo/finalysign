@@ -2,16 +2,35 @@
 {% block content %}
 <meta charset="UTF-8">
 
-<!-- Hero Video Section (Fully Responsive) -->
-<section class="relative w-full overflow-hidden">
+<!-- Hero Image Section -->
+<section class="relative w-full h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
   
-  <!-- Video container that keeps aspect ratio -->
-  <div class="relative w-full" style="aspect-ratio: 16 / 9;">
-    <video autoplay muted loop playsinline
-           class="absolute top-0 left-0 w-full h-full object-cover">
-      <source src="{{ url_for('static', filename='videos/FIN1.mp4') }}" type="video/mp4">
-      متصفحك لا يدعم تشغيل الفيديو.
-    </video>
+  <!-- Corporate Background Image (بدون أشخاص) -->
+  <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" 
+       alt="FinalySign Corporate Background" 
+       class="absolute inset-0 w-full h-full object-cover z-0">
+
+  <!-- Dark Overlay for better text readability (طبقة شفافة داكنة) -->
+  <div class="absolute inset-0 bg-black/70 z-10"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-20 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
+    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
+      ارتقِ بأعمالك مع <span class="text-accent">FinalySign</span>
+    </h1>
+    <p class="text-lg md:text-xl text-gray-200 mb-10 font-light drop-shadow-md">
+      ندمج بين التحليل المالي العميق والإبداع التصميمي لتقديم حلول متكاملة تضمن نجاحك.
+    </p>
+    <div class="flex gap-4">
+      <a href="#services" 
+         class="bg-accent text-white font-semibold px-8 py-3 rounded-full hover:bg-accent/80 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+        اكتشف خدماتنا
+      </a>
+      <a href="{{ url_for('contact') }}" 
+         class="bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold px-8 py-3 rounded-full hover:bg-white/20 transition duration-300 shadow-lg">
+        تواصل معنا
+      </a>
+    </div>
   </div>
 
 </section>
